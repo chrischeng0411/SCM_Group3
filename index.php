@@ -32,10 +32,10 @@
                             </ul>
                         </div>
                         <div class="menus" onclick="location.href='promotion.php'">
-                            PROMOTION
+                            Testing
                         </div>
                         <div class="menus" onclick="location.href='about.php'">
-                            ABOUT US
+                            Testing123
                         </div>  
                     </div>
                     <div class="login-row">
