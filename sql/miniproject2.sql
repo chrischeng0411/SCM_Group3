@@ -1,31 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: May 12, 2017 at 04:46 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: "miniproject"
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table "address"
---
-
 CREATE TABLE "address" (
   "id" serial PRIMARY KEY,
   "datetime" varchar(100) NOT NULL,
@@ -37,12 +9,6 @@ CREATE TABLE "address" (
   "username" varchar(50) NOT NULL
 );
 
--- --------------------------------------------------------
-
---
--- Table structure for table "feedback"
---
-
 CREATE TABLE "feedback" (
   "id" serial PRIMARY KEY,
   "name" varchar(100) NOT NULL,
@@ -50,12 +16,6 @@ CREATE TABLE "feedback" (
   "email" varchar(100) NOT NULL,
   "comment" text NOT NULL
 );
-
--- --------------------------------------------------------
-
---
--- Table structure for table "orders"
---
 
 CREATE TABLE "orders" (
   "id" int NOT NULL,
@@ -66,12 +26,6 @@ CREATE TABLE "orders" (
   "fk_address_id" int NOT NULL
 );
 
--- --------------------------------------------------------
-
---
--- Table structure for table "orders_line"
---
-
 CREATE TABLE "orders_line" (
   "id" serial PRIMARY KEY,
   "fk_order_id" int NOT NULL,
@@ -79,12 +33,6 @@ CREATE TABLE "orders_line" (
   "quantity" int NOT NULL,
   "subtotal" decimal(11,2) NOT NULL
 );
-
--- --------------------------------------------------------
-
---
--- Table structure for table "products"
---
 
 CREATE TABLE "products" (
   "id" serial PRIMARY KEY,
@@ -96,9 +44,15 @@ CREATE TABLE "products" (
   "category" varchar(50) NOT NULL
 );
 
---
--- Dumping data for table "products"
---
+CREATE TABLE "users" (
+  "id" serial PRIMARY KEY,
+  "username" varchar(50) NOT NULL,
+  "email" varchar(100) NOT NULL,
+  "password" varchar(50) NOT NULL,
+  "confirmcode" varchar(32) NOT NULL,
+  "status" char(10) NOT NULL
+);
+
 
 INSERT INTO products ("name", "code", "image", "price", "description", "category") VALUES
 ('Mama Mia Meatballs', 'SIDE01', 'img/Mama-Mia-Meatballs-1486730948.png', 10.50, 'Chicken meatballs cooked with mozzarella cheese, cream, napolitana sauce.', 'sides'),
@@ -127,29 +81,7 @@ INSERT INTO products ("name", "code", "image", "price", "description", "category
 ('Tropicana Twister (Apple)', 'BEV05', 'img/Tropicana-Twister-Apple-1486731393.png', 4.30, NULL, 'beverage'),
 ('Tropicana Twister (Orange)', 'BEV06', 'img/Tropicana-Twister-Orange-1486731371.png', 4.30, NULL, 'beverage');
 
--- --------------------------------------------------------
-
---
--- Table structure for table "users"
---
-
-CREATE TABLE "users" (
-  "id" serial PRIMARY KEY,
-  "username" varchar(50) NOT NULL,
-  "email" varchar(100) NOT NULL,
-  "password" varchar(50) NOT NULL,
-  "confirmcode" varchar(32) NOT NULL,
-  "status" char(10) NOT NULL
-);
-
---
--- Dumping data for table "users"
---
-
 INSERT INTO "users" ("username", "email", "password", "confirmcode", "status") VALUES
 ('admin', 'zzzykf@gmail.com', 'admin', '1679091c5a880faf6fb5e6087eb1b2dc', 'Active'),
 ('zzzykf', 'zzzykf@gmail.com', '123', '1679091c5a880faf6fb5e6087eb1b2dc', 'Active');
 
---
--- Indexes for dumped tables
---
