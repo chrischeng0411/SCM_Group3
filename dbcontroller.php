@@ -11,22 +11,25 @@ class DBController {
 	}	
 	
 	function connectDB() {
-		$conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
+		$conn = pg_connect("host='localhost' port='5432' dbname='miniproject' user='postgres' password='admin'")
+		or die ("unable to connect database");
 		return $conn;
 	}
 	
 	function runQuery($query) {
-		$result = mysqli_query($this->conn,$query);
-		while($row=mysqli_fetch_assoc($result)) {
-			$resultset[] = $row;
+		$result = pg_query($this->conn,$query);
+		$resultArr = pg_fetch_all($result);
+		foreach($resultArr as $array)
+		{
+			$resultset[] = $array;
 		}		
 		if(!empty($resultset))
 			return $resultset;
 	}
 	
 	function numRows($query) {
-		$result  = mysqli_query($this->conn,$query);
-		$rowcount = mysqli_num_rows($result);
+		$result  = pg_query($this->conn,$query);
+		$rowcount = pg_num_rows($result);
 		return $rowcount;	
 	}
 }
