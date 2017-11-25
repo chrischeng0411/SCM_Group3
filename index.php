@@ -23,7 +23,7 @@
                     <div class="menu-row">
                         <div class="menus" id="menu">
                             <div onclick="location.href='pasta.php'">
-                                99999999
+                                Menu
                             </div>
                             <ul>
                                 <li onclick="location.href='pasta.php'">Pasta</li>
